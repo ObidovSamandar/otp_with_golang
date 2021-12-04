@@ -1,6 +1,9 @@
 # github.com/dgrijalva/jwt-go v3.2.0+incompatible
 ## explicit
 github.com/dgrijalva/jwt-go
+# github.com/dustin/go-humanize v1.0.0
+## explicit
+github.com/dustin/go-humanize
 # github.com/gin-contrib/sse v0.1.0
 ## explicit; go 1.12
 github.com/gin-contrib/sse
@@ -13,7 +16,6 @@ github.com/gin-gonic/gin/internal/json
 github.com/gin-gonic/gin/render
 # github.com/go-ini/ini v1.66.0
 ## explicit
-github.com/go-ini/ini
 # github.com/go-playground/locales v0.13.0
 ## explicit; go 1.13
 github.com/go-playground/locales
@@ -37,9 +39,15 @@ github.com/jmoiron/sqlx/reflectx
 # github.com/joho/godotenv v1.4.0
 ## explicit; go 1.12
 github.com/joho/godotenv
-# github.com/json-iterator/go v1.1.9
+# github.com/json-iterator/go v1.1.10
 ## explicit; go 1.12
 github.com/json-iterator/go
+# github.com/klauspost/compress v1.13.5
+## explicit; go 1.15
+github.com/klauspost/compress/s2
+# github.com/klauspost/cpuid v1.3.1
+## explicit; go 1.12
+github.com/klauspost/cpuid
 # github.com/leodido/go-urn v1.2.0
 ## explicit; go 1.13
 github.com/leodido/go-urn
@@ -51,51 +59,73 @@ github.com/lib/pq/scram
 # github.com/mattn/go-isatty v0.0.12
 ## explicit; go 1.12
 github.com/mattn/go-isatty
+# github.com/minio/md5-simd v1.1.0
+## explicit; go 1.14
+github.com/minio/md5-simd
 # github.com/minio/minio-go v6.0.14+incompatible
 ## explicit
-github.com/minio/minio-go
-github.com/minio/minio-go/pkg/credentials
-github.com/minio/minio-go/pkg/encrypt
-github.com/minio/minio-go/pkg/s3signer
-github.com/minio/minio-go/pkg/s3utils
-github.com/minio/minio-go/pkg/set
+# github.com/minio/minio-go/v7 v7.0.16
+## explicit; go 1.15
+github.com/minio/minio-go/v7
+github.com/minio/minio-go/v7/pkg/credentials
+github.com/minio/minio-go/v7/pkg/encrypt
+github.com/minio/minio-go/v7/pkg/lifecycle
+github.com/minio/minio-go/v7/pkg/notification
+github.com/minio/minio-go/v7/pkg/replication
+github.com/minio/minio-go/v7/pkg/s3utils
+github.com/minio/minio-go/v7/pkg/set
+github.com/minio/minio-go/v7/pkg/signer
+github.com/minio/minio-go/v7/pkg/sse
+github.com/minio/minio-go/v7/pkg/tags
+# github.com/minio/sha256-simd v0.1.1
+## explicit; go 1.12
+github.com/minio/sha256-simd
 # github.com/mitchellh/go-homedir v1.1.0
 ## explicit
 github.com/mitchellh/go-homedir
-# github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421
+# github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
 ## explicit
 github.com/modern-go/concurrent
-# github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742
+# github.com/modern-go/reflect2 v1.0.1
 ## explicit
 github.com/modern-go/reflect2
-# github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d
+# github.com/rs/xid v1.2.1
 ## explicit
+github.com/rs/xid
+# github.com/sirupsen/logrus v1.8.1
+## explicit; go 1.13
+github.com/sirupsen/logrus
 # github.com/spf13/cast v1.4.1
 ## explicit
 github.com/spf13/cast
 # github.com/ugorji/go/codec v1.1.7
 ## explicit
 github.com/ugorji/go/codec
-# golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
+# golang.org/x/crypto v0.0.0-20201216223049-8b5274cf687f
 ## explicit; go 1.11
 golang.org/x/crypto/argon2
 golang.org/x/crypto/blake2b
 golang.org/x/crypto/sha3
-# golang.org/x/net v0.0.0-20190404232315-eb5bcb51f2a3
-## explicit
+# golang.org/x/net v0.0.0-20200707034311-ab3426394381
+## explicit; go 1.11
 golang.org/x/net/http/httpguts
 golang.org/x/net/idna
 golang.org/x/net/publicsuffix
-# golang.org/x/sys v0.0.0-20200116001909-b77594299b42
+# golang.org/x/sys v0.0.0-20200625212154-ddb9806d33ae
 ## explicit; go 1.12
 golang.org/x/sys/cpu
+golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
-# golang.org/x/text v0.3.2
-## explicit
+golang.org/x/sys/windows
+# golang.org/x/text v0.3.3
+## explicit; go 1.11
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
 golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
+# gopkg.in/ini.v1 v1.57.0
+## explicit
+gopkg.in/ini.v1
 # gopkg.in/yaml.v2 v2.2.8
 ## explicit
 gopkg.in/yaml.v2

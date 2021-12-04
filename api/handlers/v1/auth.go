@@ -1,13 +1,15 @@
 package v1
 
 import (
+	"context"
 	"database/sql"
 	"fmt"
 	"net/url"
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/minio/minio-go"
+	"github.com/minio/minio-go/v7"
+	"github.com/minio/minio-go/v7/pkg/credentials"
 
 	"github.com/gin-gonic/gin"
 	"github.com/obidovsamandar/go-task-auth/api/helpers"
@@ -304,10 +306,18 @@ func UpdateUser(c *gin.Context) {
 
 func ImageUpload(c *gin.Context) {
 
+	fmt.Println("salom")
+
 	cfg := config.Load()
 
-	minioClient, err := minio.New(cfg.MINIO_ENDPOINT, cfg.MINIO_ACCESSKEY_ID, cfg.MINIO_SECRET_KEY, cfg.MINIO_SSL_MODE)
+	// minioClient, err := minio.New(cfg.MINIO_ENDPOINT, cfg.MINIO_ACCESSKEY_ID, cfg.MINIO_SECRET_KEY, cfg.MINIO_SSL_MODE)
 
+	minioClient, err := minio.New(cfg.MINIO_ENDPOINT, &minio.Options{
+		Creds:  credentials.NewStaticV4(cfg.MINIO_ACCESSKEY_ID, cfg.MINIO_SECRET_KEY, ""),
+		Secure: cfg.MINIO_SSL_MODE,
+	})
+
+	fmt.Println(err)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"error":   true,
@@ -346,8 +356,11 @@ func ImageUpload(c *gin.Context) {
 
 	file.Filename = fname
 
-	_, err = minioClient.PutObject(cfg.MINIO_BUCKET_NAME, file.Filename, object, file.Size, minio.PutObjectOptions{ContentType: contentType})
+	fmt.Println(cfg.MINIO_BUCKET_NAME)
 
+	_, err = minioClient.PutObject(context.Background(), cfg.MINIO_BUCKET_NAME, file.Filename, object, file.Size, minio.PutObjectOptions{ContentType: contentType})
+
+	fmt.Println(err)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"error":   true,
@@ -415,11 +428,14 @@ func GetUser(c *gin.Context) {
 	if userInfo.UserImg != nil {
 		cfg := config.Load()
 
-		minioClient, _ := minio.New(cfg.MINIO_ENDPOINT, cfg.MINIO_ACCESSKEY_ID, cfg.MINIO_SECRET_KEY, cfg.MINIO_SSL_MODE)
+		minioClient, _ := minio.New(cfg.MINIO_ENDPOINT, &minio.Options{
+			Creds:  credentials.NewStaticV4(cfg.MINIO_ACCESSKEY_ID, cfg.MINIO_SECRET_KEY, ""),
+			Secure: cfg.MINIO_SSL_MODE,
+		})
 
 		reqParams := make(url.Values)
 		reqParams.Set("response-content-disposition", "attachment; filename=\"user.png\"")
-		presignedURL, _ := minioClient.PresignedGetObject(cfg.MINIO_BUCKET_NAME, *userInfo.UserImg, time.Second*24*60*60, reqParams)
+		presignedURL, _ := minioClient.PresignedGetObject(context.Background(), cfg.MINIO_BUCKET_NAME, *userInfo.UserImg, time.Second*24*60*60, reqParams)
 
 		userImg = presignedURL.String()
 
